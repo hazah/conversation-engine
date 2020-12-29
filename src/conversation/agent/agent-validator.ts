@@ -9,6 +9,6 @@ export default class AgentValidator implements Validator {
       if (lobby.agents.indexOf(agent) === -1) {
         throw new AgentNotInLobby(agent, lobby);
       }
-    })
+    });
   }
 }

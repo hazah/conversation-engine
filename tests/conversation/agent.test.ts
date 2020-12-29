@@ -1,4 +1,3 @@
-
 jest.mock('../../src/conversation/lobby/entity');
 jest.mock('../../src/conversation/event-store');
 
@@ -6,14 +5,11 @@ jest.mock('../../src/conversation/entered');
 jest.mock('../../src/conversation/exited');
 
 import EventStore from '../../src/conversation/event-store';
-import Agent from '../../src/conversation/agent/entity';
-import Lobby from '../../src/conversation/lobby/entity';
+import { Agent, Lobby, eventStore } from '../../src/conversation';
 import Entered from '../../src/conversation/entered';
 import Exited from '../../src/conversation/exited';
 import AgentNotInLobby from '../../src/conversation/agent-not-in-lobby';
 import AgentAlreadyInLobby from '../../src/conversation/agent-already-in-lobby';
-import Validator from '../../src/conversation/validator';
-import AgentValidator from '../../src/conversation/agent/agent-validator';
 
 beforeEach(function () {
   (Lobby as any).mockClear();
@@ -23,14 +19,10 @@ beforeEach(function () {
 });
 
 describe('agent', function () {
-  let eventStore: any;
   let lobby: any;
-  let validator: Validator = new AgentValidator();
 
   beforeEach(function () {
-    new EventStore();
-    eventStore = (EventStore as any).mock.instances[0];
-    new Lobby(eventStore);
+    new Lobby();
     lobby = (Lobby as any).mock.instances[0];
   });
 
@@ -41,7 +33,7 @@ describe('agent', function () {
           agent.remove(lobby);
         });
         
-        const agent = new Agent(eventStore, validator);
+        const agent = new Agent();
         agent.exit(lobby);
 
         expect(eventStore.publish).toHaveBeenCalledTimes(1);
@@ -55,7 +47,7 @@ describe('agent', function () {
         agent.add(lobby);
       });
       
-      const agent = new Agent(eventStore, validator);
+      const agent = new Agent();
       lobby.agents = [agent];
       
       agent.enter(lobby);
@@ -70,7 +62,7 @@ describe('agent', function () {
           agent.add(lobby);
         });
         
-        const agent = new Agent(eventStore, validator);
+        const agent = new Agent();
         agent.add(lobby);
         agent.enter(lobby);
 
@@ -84,7 +76,7 @@ describe('agent', function () {
         agent.remove(lobby);
       });
       
-      const agent = new Agent(eventStore, validator);
+      const agent = new Agent();
       agent.add(lobby);
       lobby.agents = [];
       
