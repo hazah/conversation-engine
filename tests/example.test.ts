@@ -1,3 +1,1 @@
-test('example test', function () {
-  
-});
+test('example test', function () {});

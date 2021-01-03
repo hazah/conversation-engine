@@ -15,7 +15,7 @@ export default class LobbyEntry {
 
     agent.add(lobby);
     lobby.add(agent);
-    
+
     agent.validate();
     lobby.validate();
   }
@@ -26,7 +26,7 @@ export default class LobbyEntry {
 
     agent.remove(lobby);
     lobby.remove(agent);
-    
+
     agent.validate();
     lobby.validate();
   }

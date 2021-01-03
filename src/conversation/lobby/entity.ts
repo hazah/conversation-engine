@@ -8,8 +8,10 @@ export default class Lobby {
   private _agents: Agent[] = new Array<Agent>();
   private _error: any;
 
-  public constructor(private eventStore: EventStore, private validator: Validator) {
-  }
+  public constructor(
+    private eventStore: EventStore,
+    private validator: Validator,
+  ) {}
 
   public get agents(): Agent[] {
     return this._agents;
@@ -25,7 +27,7 @@ export default class Lobby {
     }
     this.agents.push(agent);
   }
-  
+
   public remove(agent: Agent): void {
     const index = this.agents.indexOf(agent);
     if (index === -1) {

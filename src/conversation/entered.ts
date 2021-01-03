@@ -1,5 +1,5 @@
-import Agent from "./agent/entity";
-import Lobby from "./lobby/entity";
+import Agent from './agent/entity';
+import Lobby from './lobby/entity';
 
 export default class Entered {
   constructor(private _agent: Agent, private _lobby: Lobby) {}

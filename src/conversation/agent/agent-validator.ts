@@ -1,7 +1,7 @@
-import AgentNotInLobby from "../agent-not-in-lobby";
-import Lobby from "../lobby/entity";
-import Validator from "../validator";
-import Agent from "./entity";
+import AgentNotInLobby from '../agent-not-in-lobby';
+import Lobby from '../lobby/entity';
+import Validator from '../validator';
+import Agent from './entity';
 
 export default class AgentValidator implements Validator {
   validate(agent: Agent): void {
